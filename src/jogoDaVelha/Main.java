@@ -42,6 +42,15 @@ public class Main {
 			System.out.println();
 		}
 	}
+	
+	public static boolean checandoJogadaValida(String[][] tabuleiro, int linha, int coluna) {
+		if (linha >= 0 && linha <= 2 && coluna >= 0 && coluna <= 2) {
+			if (tabuleiro[linha][coluna] == null) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public static boolean checarLinha(String[][] tabuleiro) {
 		boolean linha = true;
@@ -104,5 +113,16 @@ public class Main {
 		}
 		return diagonal;
 	}
-
+	
+	public static boolean checarVelha(String[][] tabuleiro) {
+		boolean velha = true;
+		for (int i = 0; i < tabuleiro.length; i++) {
+			for (int j = 0; j < tabuleiro[i].length; j++) {
+				if (tabuleiro[i][j] == null) {
+					velha = false;
+				}
+			}
+		}
+		return velha;
+	}
 }
