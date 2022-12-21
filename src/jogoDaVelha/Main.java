@@ -20,7 +20,7 @@ public class Main {
 
 		boolean continuarJogando = true;
 
-		System.out.println("O primeiro jogador ficará com o X.");
+		System.out.println("O primeiro jogador ficará com o O.");
 		
 		while (continuarJogando) {
 
@@ -41,7 +41,30 @@ public class Main {
 				break;
 			}
 
-			
+			if (checandoJogadaValida(tabuleiro, linhaTabuleiro, colunaTabuleiro)) {
+
+				tabuleiro[linhaTabuleiro][colunaTabuleiro] = jogadorDaVez;
+				if (checandoLinha(tabuleiro) || checandoColuna(tabuleiro)
+						|| checandoDiagonal(tabuleiro)) {
+					System.out.println("O jogador " + jogadorDaVez + " ganhou!");
+					imprimindoTabuleiro(tabuleiro);
+					continuarJogando = false;
+				} else if (checandoVelha(tabuleiro)) {
+					imprimindoTabuleiro(tabuleiro);
+					System.out.println("Ops! DEU VELHA!");
+					continuarJogando = false;
+				} else {
+
+					if (jogadorDaVez == primeiroJogador) {
+						jogadorDaVez = segundoJogador;
+					} else {
+						jogadorDaVez = primeiroJogador;
+					}
+				}
+
+			} else {
+				System.out.println("Jogada inválida, tente novamente!");
+			}
 		}
 	}
 
