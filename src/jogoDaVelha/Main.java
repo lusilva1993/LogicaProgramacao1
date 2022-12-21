@@ -20,7 +20,26 @@ public class Main {
 		System.out.println("O primeiro jogador ficará com o X.");
 		imprimindoTabuleiro(tabuleiro);
 		checarLinha(tabuleiro);
+		checarColuna(tabuleiro);
 		
+	}
+	
+	public static void imprimindoTabuleiro(String[][] tabuleiro) {
+		System.out.println("  0 1 2");
+		for (int i = 0; i < tabuleiro.length; i++) {
+			System.out.print(i + " ");
+			for (int j = 0; j < tabuleiro[i].length; j++) {
+				if (tabuleiro[i][j] == null) {
+					System.out.print(" ");
+				} else {
+					System.out.print(tabuleiro[i][j]);
+				}
+				if (j != tabuleiro[i].length - 1) {
+					System.out.print("|");
+				}
+			}
+			System.out.println();
+		}
 	}
 	
 	public static boolean checarLinha(String[][] tabuleiro) {
@@ -39,23 +58,21 @@ public class Main {
 		return linha;
 	}
 
-
-	public static void imprimindoTabuleiro(String[][] tabuleiro) {
-		System.out.println("  0 1 2");
+	
+	public static boolean checarColuna(String[][] tabuleiro) {
+		boolean coluna = true;
 		for (int i = 0; i < tabuleiro.length; i++) {
-			System.out.print(i + " ");
-			for (int j = 0; j < tabuleiro[i].length; j++) {
-				if (tabuleiro[i][j] == null) {
-					System.out.print(" ");
-				} else {
-					System.out.print(tabuleiro[i][j]);
-				}
-				if (j != tabuleiro[i].length - 1) {
-					System.out.print("|");
+			coluna = true;
+			for (int j = 1; j < tabuleiro[i].length; j++) {
+				if (tabuleiro[0][i] != tabuleiro[j][i] || tabuleiro[0][i] == null) {
+					coluna = false;
 				}
 			}
-			System.out.println();
+			if (coluna) {
+				break;
+			}
 		}
+		return coluna;
 	}
 		
 }
