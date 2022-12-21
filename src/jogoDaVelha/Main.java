@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
+		
 		Scanner scanner = new Scanner(System.in);
 
 		String primeiroJogador = "O";
@@ -14,16 +15,36 @@ public class Main {
 
 		int linhaTabuleiro = 0;
 		int colunaTabuleiro = 0;
+		
+		String jogadorDaVez = primeiroJogador;
 
 		boolean continuarJogando = true;
 
 		System.out.println("O primeiro jogador ficará com o X.");
-		imprimindoTabuleiro(tabuleiro);
-		checarLinha(tabuleiro);
-		checarColuna(tabuleiro);
-		checarDiagonal(tabuleiro);
+		
+		while (continuarJogando) {
 
+			imprimindoTabuleiro(tabuleiro);
+
+			System.out.print("Insira a linha:");
+			if (scanner.hasNextInt()) {
+				linhaTabuleiro = scanner.nextInt();
+			} else {
+				System.err.print("Valor inválido!");
+				break;
+			}
+			System.out.print("Insira a coluna:");
+			if (scanner.hasNextInt()) {
+				colunaTabuleiro = scanner.nextInt();
+			} else {
+				System.err.print("Valor inválido!");
+				break;
+			}
+
+			
+		}
 	}
+
 
 	public static void imprimindoTabuleiro(String[][] tabuleiro) {
 		System.out.println("  0 1 2");
@@ -43,16 +64,16 @@ public class Main {
 		}
 	}
 	
-	public static boolean checandoJogadaValida(String[][] tabuleiro, int linha, int coluna) {
-		if (linha >= 0 && linha <= 2 && coluna >= 0 && coluna <= 2) {
-			if (tabuleiro[linha][coluna] == null) {
+	public static boolean checandoJogadaValida(String[][] tabuleiro, int linhaTabuleiro, int colunaTabuleiro) {
+		if (linhaTabuleiro >= 0 && linhaTabuleiro <= 2 && colunaTabuleiro >= 0 && colunaTabuleiro <= 2) {
+			if (tabuleiro[linhaTabuleiro][colunaTabuleiro] == null) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public static boolean checarLinha(String[][] tabuleiro) {
+	public static boolean checandoLinha(String[][] tabuleiro) {
 		boolean linha = true;
 		for (int i = 0; i < tabuleiro.length; i++) {
 			linha = true;
@@ -68,7 +89,7 @@ public class Main {
 		return linha;
 	}
 
-	public static boolean checarColuna(String[][] tabuleiro) {
+	public static boolean checandoColuna(String[][] tabuleiro) {
 		boolean coluna = true;
 		for (int i = 0; i < tabuleiro.length; i++) {
 			coluna = true;
@@ -84,7 +105,7 @@ public class Main {
 		return coluna;
 	}
 
-	public static boolean checarDiagonal(String[][] tabuleiro) {
+	public static boolean checandoDiagonal(String[][] tabuleiro) {
 		boolean diagonal = true;
 		for (int i = 1; i < tabuleiro.length; i++) {
 			for (int j = 1; j < tabuleiro.length; j++) {
@@ -114,7 +135,7 @@ public class Main {
 		return diagonal;
 	}
 	
-	public static boolean checarVelha(String[][] tabuleiro) {
+	public static boolean checandoVelha(String[][] tabuleiro) {
 		boolean velha = true;
 		for (int i = 0; i < tabuleiro.length; i++) {
 			for (int j = 0; j < tabuleiro[i].length; j++) {
