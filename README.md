@@ -1,4 +1,4 @@
-# LogicaProgramacao1
+# Logica Programacao 1 - JOGO DA VELHA
 Projeto final do módulo de lógica de programação 1. Jogo da Velha utilizando métodos.
 
 Enunciado
