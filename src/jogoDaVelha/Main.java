@@ -21,9 +21,10 @@ public class Main {
 		imprimindoTabuleiro(tabuleiro);
 		checarLinha(tabuleiro);
 		checarColuna(tabuleiro);
-		
+		checarDiagonal(tabuleiro);
+
 	}
-	
+
 	public static void imprimindoTabuleiro(String[][] tabuleiro) {
 		System.out.println("  0 1 2");
 		for (int i = 0; i < tabuleiro.length; i++) {
@@ -41,7 +42,7 @@ public class Main {
 			System.out.println();
 		}
 	}
-	
+
 	public static boolean checarLinha(String[][] tabuleiro) {
 		boolean linha = true;
 		for (int i = 0; i < tabuleiro.length; i++) {
@@ -58,7 +59,6 @@ public class Main {
 		return linha;
 	}
 
-	
 	public static boolean checarColuna(String[][] tabuleiro) {
 		boolean coluna = true;
 		for (int i = 0; i < tabuleiro.length; i++) {
@@ -74,5 +74,35 @@ public class Main {
 		}
 		return coluna;
 	}
-		
+
+	public static boolean checarDiagonal(String[][] tabuleiro) {
+		boolean diagonal = true;
+		for (int i = 1; i < tabuleiro.length; i++) {
+			for (int j = 1; j < tabuleiro.length; j++) {
+				if (i == j) {
+					if (tabuleiro[0][0] != tabuleiro[i][j] || tabuleiro[0][0] == null) {
+						diagonal = false;
+					}
+				}
+			}
+		}
+		if (diagonal) {
+			return diagonal;
+		}
+		diagonal = true;
+		int cont = 1;
+		for (int i = tabuleiro.length - 2; i >= 0; i--) {
+			for (int j = 1; j < tabuleiro.length; j++) {
+				if (cont == j) {
+					if (tabuleiro[tabuleiro.length - 1][0] != tabuleiro[i][j]
+							|| tabuleiro[tabuleiro.length - 1][0] == null) {
+						diagonal = false;
+					}
+				}
+			}
+			cont++;
+		}
+		return diagonal;
+	}
+
 }
