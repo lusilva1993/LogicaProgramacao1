@@ -19,8 +19,26 @@ public class Main {
 
 		System.out.println("O primeiro jogador ficará com o X.");
 		imprimindoTabuleiro(tabuleiro);
+		checarLinha(tabuleiro);
 		
 	}
+	
+	public static boolean checarLinha(String[][] tabuleiro) {
+		boolean linha = true;
+		for (int i = 0; i < tabuleiro.length; i++) {
+			linha = true;
+			for (int j = 1; j < tabuleiro[i].length; j++) {
+				if (tabuleiro[i][0] != tabuleiro[i][j] || tabuleiro[i][0] == null) {
+					linha = false;
+				}
+			}
+			if (linha) {
+				break;
+			}
+		}
+		return linha;
+	}
+
 
 	public static void imprimindoTabuleiro(String[][] tabuleiro) {
 		System.out.println("  0 1 2");
